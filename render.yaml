@@ -6,7 +6,7 @@ services:
   - type: cron
     name: garden-weather-alerts
     runtime: python
-    plan: free
+    plan: starter
     # Runs every day at 6:00 AM Eastern (10:00 UTC). Adjust the time if you like:
     # the format is "minute hour day month weekday" in UTC.
     # 10:00 UTC = 6:00 AM EDT (summer). Your growing season is all EDT, so this
