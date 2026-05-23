@@ -1,0 +1,21 @@
+# Render Blueprint — defines a daily scheduled job that runs the garden check.
+# When you connect this repo to Render, it reads this file and sets everything
+# up automatically. You only add your three secrets in the dashboard afterward.
+
+services:
+  - type: cron
+    name: garden-weather-alerts
+    runtime: python
+    plan: free
+    # Runs every day at 6:00 AM Eastern (10:00 UTC). Adjust the time if you like:
+    # the format is "minute hour day month weekday" in UTC.
+    # 10:00 UTC = 6:00 AM EDT (summer). Your growing season is all EDT, so this
+    # lands at 6 AM your time throughout the season.
+    schedule: "0 10 * * *"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    envVars:
+      - key: PUSHOVER_TOKEN
+        sync: false   # you paste this in the dashboard
+      - key: PUSHOVER_USER
+        sync: false   # you paste this in the dashboard
